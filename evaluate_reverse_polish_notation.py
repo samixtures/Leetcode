@@ -1,25 +1,51 @@
-tokens = ["2","1","+","3","*"]
-# Output: 9
-# Explanation: ((2 + 1) * 3) = 9
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        operator_set = {"+", "-", "*", "/"}
+        stack = []
+        total = 0
+        if len(tokens) == 1:
+            return tokens[0]
+        for i, x in enumerate(tokens):
+            if x not in operator_set:
+                stack.append(x)
+            elif x in operator_set:
+                if x == "+":
+                    total = 0
+                    print(total)
+                    print(stack)
+                    total += int(stack[-1]) + int(stack[-2])
+                    stack.pop(-1)
+                    stack.pop(-1)
+                    stack.append(total)
+                elif x == "-":
+                    total = 0
+                    print(total)
+                    print(stack)
+                    total += int(stack[-2]) - int(stack[-1])
+                    stack.pop(-1)
+                    stack.pop(-1)
+                    stack.append(total)
+                elif x == "*":
+                    total = 0
+                    print(total)
+                    print(stack)
+                    total += int(float(stack[-1]) * float(stack[-2]))
+                    stack.pop(-1)
+                    stack.pop(-1)
+                    stack.append(total)
+                elif x == "/":
+                    total = 0
+                    print(total)
+                    print(stack)
+                    print(x)
+                    total += int(float(stack[-2]) / float(stack[-1]))
+                    stack.pop(-1)
+                    stack.pop(-1)
+                    stack.append(total)
 
-st = []
-ret = 0
-for x in tokens:
-    if x != "+" and x != "-" and x != "*" and x != "/":
-        st.append(x)
-    else:
-        temp1 = st[-1]
-        temp2 = st[-2]
-        st.pop(-1)
-        st.pop(-2)
-        if x == "+":
-            ret += temp1 + temp2
-        elif x == "-":
-            ret += temp1 - temp2
-        elif x == "*":
-            ret = temp1 * temp2
-        elif x == "/":
-            ret += temp1//temp2
-            
-print(ret)
-print(st)
+        print("total is", total)
+        return total
