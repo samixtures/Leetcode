@@ -31,3 +31,42 @@ class Solution(object):
                 else:
                     break
         return res        
+
+
+# NEW AND NOT COPIED? SOLUTION?
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         """
+#         Edge case: if it's empty return an empty list
+
+#         Initial thoughts:
+#         sort it first
+#         loop through each element in the list, and use the two
+#         pointer algorithm to figure out what two other numbers
+#         add with that number to make 0 as soon as possible.
+
+#         Problem:
+#         what to do when one of the pointers is equal to the index
+#         of the current element we are on?
+#         Hmm okay then we can add one or subtract one to the pointer
+#         I guess.
+
+#         [-1,0,1,2,-1,-4]
+#         [-4,-1,-1,0,1,2]
+#         """
+#         nums.sort()
+#         res = []
+#         for x in range(len(nums)):
+#             l = x+1
+#             h = len(nums)-1
+#             while l < h:
+#                 if (nums[l] + nums[h] + nums[x]) == 0 and [nums[l], nums[h], nums[x]] not in res:
+#                     res.append([nums[l], nums[h], nums[x]])
+#                 elif (nums[l] + nums[h] + nums[x]) < 0:
+#                     l += 1
+#                 elif (nums[l] + nums[h] + nums[x]) > 0:
+#                     h -= 1
+#                 else:
+#                     h-=1
+#                     continue
+#         return res
