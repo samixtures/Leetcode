@@ -29,14 +29,24 @@ class solution:
             r = m - 1
 
 
+        0 1 2 3 4 5 6
+        4 5 6 7 0 1 2
+                l m r
 
+        0 1 2 3 4 5
+        l   m l m r
         """
         l, r = 0, len(nums)-1
-        curMin = None
+        curMin = min(nums[l], nums[r])
         while l < r:
             m = (l+r)//2
             if nums[l] <= nums[m]:
-                curMin = min(nums[l], nums[m])
+                curMin = min(nums[l], curMin)
+                l = m + 1
+            else:
+                r = m - 1
+                curMin = min(nums[r], curMin)
+        return curMin
 
 
 with open('in.txt') as file:
