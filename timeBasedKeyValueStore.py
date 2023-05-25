@@ -19,6 +19,8 @@ class TimeMap:
         minTimeStamp = float('inf')
         minTimeStampVal = ""
 
+        print(self.dataStruct[key])
+
         for x in self.dataStruct[key]:
             if maxTimeStamp < x[1]:
                 maxTimeStamp = x[1]
@@ -31,6 +33,19 @@ class TimeMap:
         if minTimeStamp > timestamp:
             return ""
 
+        maxTimeStampVal = 0
+        maxTimeStamp = 0
+        minTimeStamp = float('inf')
+        minTimeStampVal = ""
+
+        maxTimeStampVal = self.dataStruct[key][0][0]
+        maxTimeStamp = self.dataStruct[key][0][1]
+
+        for x in self.dataStruct[key]:
+            if x[1] <= timestamp:
+                if maxTimeStamp < x[1]:
+                    maxTimeStamp = x[1]
+                    maxTimeStampVal = x[0]
 
         return maxTimeStampVal
 
