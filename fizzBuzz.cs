@@ -1,30 +1,35 @@
-public class Solution {
-    public IList<string> FizzBuzz(int n) {
+public class Solution
+{
+    public IList<string> FizzBuzz(int n)
+    {
         string[] output = new string[n];
 
         for (int i = 1; i <= n; i++)
         {
-            if (i % 3 == 0 && i % 5 == 0)
+            String currentString = "";
+            bool divisibleBy3 = i % 3 == 0;
+            bool divisibleBy5 = i % 5 == 0;
+
+
+            if (divisibleBy3)
             {
-                output[i-1] = "FizzBuzz";
+                currentString += "Fizz";
             }
-            else if (i % 3 == 0)
+            if (divisibleBy5)
             {
-                output[i-1] = "Fizz";
+                currentString += "Buzz";
             }
-            else if (i % 5 == 0)
+            if (currentString == "")
             {
-                output[i-1] = "Buzz";
+                currentString = i.ToString();
             }
-            else
-            {
-                output[i-1] = i.ToString();
-            }
+
+            output[i - 1] = currentString;
         }
 
         return output;
     }
-    
+
     // Time Complexity: O(n)
     // Space Complexity: O(1) excluding the output array
 }
