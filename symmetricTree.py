@@ -29,6 +29,13 @@ class Solution:
         of the queue, if it doesn't, add None in their place,
 
         then, after we've completed 
+
+        Time Complexity: O(nlog(n))?
+        Space Complexity: O(nlog(n))?
+        I'm just saying that because O(n) is going through each node
+        but we do that and we go through the "None"s at the end of each node too
+
+        It might just be O(n)
         """
         q = [root]
         while len(q) > 0:
@@ -47,27 +54,33 @@ class Solution:
                     else:
                         q.append(None)
                 lengthQ -= 1
-                print("Length", lengthQ)
+                # print("Length", lengthQ)
 
-                for x in q:
-                    if x:
-                        print(x.val)
-                    else:
-                        print("None")
+                # for x in q:
+                #     if x:
+                #         print(x.val)
+                #     else:
+                #         print("None")
 
-                start = 0
-                end = len(q)-1
-                while start < end:
-                    print(q[start].val, q[end].val)
-                    if len(q) > 0:
-                        if q[start].val == q[end].val:
-                            start += 1
-                            end -= 1
-                        else:
-                            return False
+            start = 0
+            end = len(q)-1
+            while start < end:
+                # if q[start] and q[end]:
+                #     print(q[start].val, q[end].val)
+                if len(q) > 0:
+                    if q[start] == None and q[end] == None:
+                        start += 1
+                        end -= 1
+                    elif q[start] == None or q[end] == None:
+                        return False
+                    elif q[start].val == q[end].val:
+                        start += 1
+                        end -= 1
                     else:
-                        break
+                        return False
+                else:
+                    break
         return True
         
-        #
+            
                     
