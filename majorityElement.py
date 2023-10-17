@@ -1,20 +1,24 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         """
-        frequency list is obviously first instinct
-        but there's DEFINITELY a more memory efficient algorithm
+        Moore Voting Algorithm:
+        if there's a majority element, it will always remain in the lead
+        in terms of votes (count variable) even after encountering other
+        elements.
 
-        Apparently it peats 97% of users with Python3 in terms of memory
+        Funny thing, it seems to only beat 82% of users in terms of memory
+        (which is less than when I used the frequency map)
+        but, of course, it beats 78% of users in terms of Runtime
+        (which is slightly faster than the prev freq map algorithm)
+        I guess they're both O(n) but my other one is like O(2n)
         """
-        freq = {}
+        count, candidate = 0, None
+        # candidate = nums[0]
         for x in nums:
-            if x not in freq:
-                freq[x] = 1
-            else:
-                freq[x] += 1
-        maxKey, maxVal = float('-inf'), float('-inf')
-        for x in freq:
-            if freq[x] > maxVal:
-                maxVal = freq[x]
-                maxKey = x
-        return maxKey
+            if count == 0:
+                candidate = x
+            if candidate != x:
+                count -= 1
+            elif candidate == x:
+                count += 1
+        return candidate
